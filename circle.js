@@ -5,12 +5,15 @@ class Circle{
     }
 
     dist(point){
-        return point.sub(this.position.sub(this.radius));
+        return point.sub(this.position).mag()-this.r;
     }
 
     draw(){
         push();
+        stroke(255);
+        fill(255);
         translate(this.position.x, this.position.y);
-        ellipse(this.x, this.y, this.r, this.r);;
+        ellipse(this.position.x, this.position.y, this.r, this.r);;
+        pop();
     }
 }

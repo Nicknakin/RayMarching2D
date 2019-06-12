@@ -5,7 +5,8 @@ class Box{
     }
 
     dist(point){
-        return point.sub(this.dimensions.sub(this.position));
+        let temp = point.sub(this.position.copy().sub(this.dimensions));
+        return max(temp.array());
     }
 
     draw(){
@@ -13,5 +14,6 @@ class Box{
         rectMode(CENTER);
         translate(this.position.x, this.position.y);
         rect(this.dimensions.x, this.dimensions.y);
+        pop();
     }
 }

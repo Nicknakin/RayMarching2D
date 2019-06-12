@@ -1,25 +1,46 @@
-let box, circle;
+let circles;
+let points = [];
 
 function setup(){
-    createCanvas(window.innerWidth*0.99, window.innerHeight*0.96);
+    createCanvas(800, 800);
 
-    box = new Box(width/2, height/2, 10, 10);
-    circle = new Circle(width/2 + 20, height/2, 10);
+    circles = new Array(50).fill().map(circ => new Circle(random(width), random(height), random(10, 20)));
+
     background(0);
 }
 
 function draw(){
-    for(let y = 0; y < height; y++){
-        for(let x = 0; x < width; x++){
-            let pos = createVector(y, x);
-            let dists = [box.dist(pos), circle.dist(pos)];
-            let dist = min(dists);
-            console.log(dists, dist);
-            if(dist <= 1){
-                stroke(255);
-                point(x, y);
-            }
-        }
+    background(0);
+    stroke(255);
+    noFill();
+    let angle = frameCount/100;
+    let rayShooter = createVector(mouseX, mouseY);
+    let d = 0;
+    let totalD = 0;
+    let p = createVector(width/2, width/2);
+    circles.forEach(c => c.draw());
+    for(let i = 0; i < 64; i++){
+        d = min(circles.map(circ => circ.dist(p)));
+        console.log(d);
+        // p.add(p5.Vector.fromAngle(angle).mult(d));
+        totalD += d;
+        ellipse(p.x, p.y, d, d);
     }
-    noLoop();
+
+    points.push(p);
+    points.splice(50);
+    stroke(255);
+    points.forEach(p => point(p.x, p.y));
+}
+
+function union(a, b){
+    return min(a, b);
+}
+
+function intersect(a, b){
+    return max(a,b);
+}
+
+function negate(a, b){
+    return max(a, -b);
 }
