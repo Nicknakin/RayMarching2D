@@ -5,7 +5,7 @@ class Circle{
     }
 
     dist(point){
-        return point.sub(this.position).mag()-this.r;
+        return point.dist(this.position)-this.r/2;
     }
 
     draw(){
@@ -13,7 +13,7 @@ class Circle{
         stroke(255);
         fill(255);
         translate(this.position.x, this.position.y);
-        ellipse(this.position.x, this.position.y, this.r, this.r);;
+        ellipse(0, 0, this.r, this.r);;
         pop();
     }
 }

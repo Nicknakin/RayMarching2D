@@ -5,15 +5,16 @@ class Box{
     }
 
     dist(point){
-        let temp = point.sub(this.position.copy().sub(this.dimensions));
-        return max(temp.array());
+        let dx = max(abs(point.x - this.position.x) - this.dimensions.x / 2, 0);
+        let dy = max(abs(point.y - this.position.y) - this.dimensions.y / 2, 0);
+        return sqrt(dx * dx + dy * dy);
     }
 
     draw(){
         push();
         rectMode(CENTER);
         translate(this.position.x, this.position.y);
-        rect(this.dimensions.x, this.dimensions.y);
+        rect(0, 0, this.dimensions.x, this.dimensions.y);
         pop();
     }
 }
