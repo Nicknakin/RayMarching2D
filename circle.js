@@ -11,6 +11,7 @@ class Circle{
     draw(){
         push();
         stroke(255);
+        strokeWeight(1);
         fill(255);
         translate(this.position.x, this.position.y);
         ellipse(0, 0, this.r, this.r);;

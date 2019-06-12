@@ -13,6 +13,9 @@ class Box{
     draw(){
         push();
         rectMode(CENTER);
+        stroke(255);
+        strokeWeight(1);
+        fill(255);
         translate(this.position.x, this.position.y);
         rect(0, 0, this.dimensions.x, this.dimensions.y);
         pop();
