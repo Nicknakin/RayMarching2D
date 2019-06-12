@@ -8,7 +8,7 @@ function setup(){
     createCanvas(floor(window.innerWidth*0.99), floor(window.innerHeight*0.95));
 
     shapes = new Array(20).fill().map(s => new Polygon(random(width), random(height), 50, 6));
-    /*shapes = new Array(50).fill().map(circ => {
+    shapes = shapes.concat(new Array(30).fill().map(circ => {
         let c = new Circle(random(width), random(height), random(50, 100));
         let b = new Box(c.position.x, c.position.y, random(50, 100), random(50,100));
         let rand = Math.random();
@@ -20,7 +20,7 @@ function setup(){
             op: op,
             dist: (p) => op((Math.round(rand2))? c.dist(p): b.dist(p), (Math.round(rand2))? b.dist(p): c.dist(p)),
         }
-    });*/
+    }));
 
     origin = createVector(width/2, height/2);
 
