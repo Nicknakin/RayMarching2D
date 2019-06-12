@@ -10,6 +10,16 @@ class Box{
         return sqrt(dx * dx + dy * dy);
     }
 
+    distRot(point, theta){
+        let p = point.copy();
+        const rel = p.sub(this.position);
+        const rotx = rel.x*cos(-theta) - rel.y*sin(-theta)
+        const roty = rel.x*sin(-theta) + rel.y*cos(-theta)
+        const dx = max(abs(rotx) - this.dimensions.x / 2, 0);
+        const dy = max(abs(roty) - this.dimensions.y / 2, 0);
+        return sqrt(dx * dx + dy * dy);
+    }
+
     draw(){
         push();
         rectMode(CENTER);
